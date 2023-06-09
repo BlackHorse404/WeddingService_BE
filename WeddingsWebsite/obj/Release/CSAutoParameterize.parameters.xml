@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="QL_SHOP_WEDDINGConnectionString-Web.config Connection String" description="QL_SHOP_WEDDINGConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=PHAT-MSI\SQLEXPRESS;Initial Catalog=QL_SHOP_WEDDING;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\HUFI\\Năm\ 3\\HK1\\Lập\ Trình\ Web\\Đồ\ Án\\Source\ Code\\WeddingsWebsite\\WeddingsWebsite\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='QL_SHOP_WEDDINGConnectionString']/@connectionString" />
+  </parameter>
+</parameters>

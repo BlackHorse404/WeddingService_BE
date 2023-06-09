@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewBag.Title = "OrderPage";
+    Layout = "~/Views/Shared/_SanPhamLayout.cshtml";
+}
+<style>
+    :root {
+        --color-table: #ff8389;
+    }
+
+    .bg-pink-primary-bold {
+        background-color: var(--color-table);
+    }
+
+    .orderBox {
+        height: 500px; 
+        padding: 20px 20px;
+        padding-top: 0px;
+        border-radius: 10px;
+    }
+
+    .orderBox > form label {
+        margin-bottom: 4px;
+    }
+
+    .form-group {
+        margin-top: 14px;
+    }
+
+    .header-title {
+        text-align: center;
+    }
+
+    table tr {
+        width: 100%;
+    }
+
+        table tr td, table tr th {
+            text-align: center;
+        }
+
+        table tr td {
+            width: auto;
+        }
+
+    .content-ordered {
+        height: 280px;
+        overflow: auto;
+    }
+
+    .border-tableOutLine {
+        border-collapse: collapse;
+        box-shadow: 0 0 0 1px #e0e0e0;
+        border-radius: 10px;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+        
+        table th:first-child {
+            border-top-left-radius: 10px;
+        }
+
+        table th:last-child {
+            border-top-right-radius: 10px;
+        }
+
+        table tr:last-child td:first-child {
+            border-bottom-left-radius: 10px;
+        }
+
+        table tr:last-child td:last-child {
+            border-bottom-right-radius: 10px;
+        }
+
+        table tr:last-child td{
+            border: none;
+        }
+
+        table tr td{
+            padding: 10px 0;
+        }
+</style>
+<div id="orderContainer" class="container-fluid row row-cols-1 row-cols-lg-2">
+    <div class="col col-lg-7">
+        <h2 class="header-title">Sản Phẩm Thanh Toán</h2>
+
+        @* block table order content *@
+        <div class="border-tableOutLine">
+            <table class="mt-3 bordered w-100" border="0" cellspacing="2" style="border-collapse: collapse;">
+                <thead>
+                    <tr class="bg-pink-primary-bold text-white" style="font-weight: bold; height: 80px;">
+                        <th>Tên sản phẩm</th>
+                        <th>Số Lượng</th>
+                        <th>Đơn giá</th>
+                        <th>Thành Tiền</th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="content-ordered">
+                @Html.Action("ContentOrderedPartial", "SanPham")
+            </div>
+            <table class="bordered w-100" border="0" cellspacing="1" style="border-collapse: collapse;">
+                <tfoot>
+                    <tr class="bg-pink-primary-bold text-white" style="font-weight: bold; height: 50px;">
+                        <td colspan="2">Tổng Số Lượng: @ViewBag.TongSL</td>
+                        <td colspan="2">Thành Tiền: @ViewBag.TongThanhTien.ToString("#,0 VNĐ")</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    @* order infor *@
+    <div class="orderBox shadow col col-lg-5 mt-5 mt-lg-0 ps-5">
+        <div class="w-100">
+            <div class="pt-4 header-title">
+                <h2>Thông Tin Đặt Hàng</h2>
+                <p style="font-style: italic;">
+                    Đặt hàng giao nhận tận nhà của bạn tại khu vực TP. HCM
+                </p>
+            </div>
+            <form method="post" action="@Url.Action("StateOrdered","SanPham")" class="mt-3">
+                <div class="row row-cols-1 row-cols-lg-2">
+                    <div class="col form-group">
+                        <label>Tên Người Nhận</label>
+                        <input type="text" class="form-control" placeholder="Nguyễn Văn X" name="fullname" required />
+                    </div>
+                    <div class="col form-group">
+                        <label>Số Điện Thoại Liên Hệ</label>
+                        <input type="tel" pattern="(^0|^84)+[0-9]{9}$" class="form-control" placeholder="ex: 09xxxx" name="Telephone" required />
+                    </div>
+
+                </div>
+                <div class="row row-cols-1">
+                    <div class="col form-group">
+                        <label>E-mail Liên Hệ</label>
+                        <input type="email" class="form-control" placeholder="example@gmail.com" name="email" required />
+                    </div>
+                    <div class="col form-group">
+                        <label>Địa Chỉ Nhận Hàng</label>
+                        <input type="text" class="form-control" placeholder="40 Lê Trọng Tấn, Q.Tân Phú, TP.HCM" name="Address" required />
+                    </div>
+                </div>
+
+                <div class="mt-5 form-group d-flex w-100 justify-content-center align-items-center">
+                    <input type="submit" class="btn btn-primary w-50" value="Xác Nhận Đặt Hàng">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
